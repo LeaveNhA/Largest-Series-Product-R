@@ -1,9 +1,9 @@
 library("purrr")
 
-                                        # supress warnings until I find a way to solve them:
+# supress warnings until I find a way to solve them:
 options(warn=-1)
 
-                                        # definitions of problem space:
+# definitions of problem space:
 identity <- function(a) a
 is_done <- function(a) (class(a) == "rlang_box_done")
 wrap_if_done <- function(f) function(v) if(is_done(v)) v else f(v)
@@ -15,7 +15,7 @@ indices <- function(span) function(ns) 1:(length(ns) - span + 1)
 value_and_indices <- function(span) function(v) map(c(identity, (indices(span))), function(f) f(v))
 squence_of_prod_f <- function(span) function(ns) function(a) prod(ns[seq(a, length.out = span)])
 
-                                        # problem function:
+# problem function:
 largest_series_product <- function(digits, span){
   to_numeric_list <- c(
     function(a) strsplit(a, NULL),
